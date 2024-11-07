@@ -179,14 +179,17 @@ export default function Home(props) {
 		let textarea = document.getElementById("main-textarea");
 		let start = textarea.selectionStart;
 		let end = textarea.selectionEnd;
-
-		if (start !== end) {
-			let selectedText = textarea.value.slice(start, end);
-			navigator.clipboard.writeText(selectedText);
-			props.showAlert("info", "Copied selection to Clipboard.");
+		if (navigator.clipboard && navigator.clipboard.writeText) {
+			if (start !== end) {
+				let selectedText = textarea.value.slice(start, end);
+				navigator.clipboard.writeText(selectedText);
+				props.showAlert("info", "Copied selection to Clipboard.");
+			} else {
+				navigator.clipboard.writeText(text);
+				props.showAlert("info", "Copied document to Clipboard.");
+			}
 		} else {
-			navigator.clipboard.writeText(text);
-			props.showAlert("info", "Copied document to Clipboard.");
+			props.showAlert("danger", "Clipboard not availabe.");
 		}
 	};
 
@@ -243,7 +246,7 @@ export default function Home(props) {
 						rows="8"
 						value={text}
 						style={{ resize: "none" }}
-						placeholder="Enter text here OR Upload a .txt/ .doc/ .pdf file."
+						placeholder="Enter text here OR Upload a .txt file."
 						onChange={handleTextAreaChange}
 					></textarea>
 					<p className="my-2 mx-2">
