@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 
-export default function Navbar() {
+export default function Navbar(props) {
 	const [theme, setTheme] = useState("light");
 
 	const handleTheme = () => {
@@ -32,22 +31,39 @@ export default function Navbar() {
 					<span className="navbar-toggler-icon"></span>
 				</button>
 
-				<Link className="navbar-brand" to="/">
+				<button
+					className="navbar-brand"
+					style={{ border: "none", backgroundColor: "transparent" }}
+					onClick={() => {
+						props.setComponent("home");
+					}}
+				>
 					WebDev
-				</Link>
+				</button>
 
 				<div
 					className="collapse navbar-collapse"
 					id="navbarNavAltMarkup"
 				>
 					<div className="navbar-nav">
-						<Link className="nav-link" aria-current="page" to="/">
-							{/* add - "active" class in anchor tag to show the active component. */}
+						<button
+							className="nav-link"
+							onClick={() => {
+								props.setComponent("home");
+							}}
+						>
+							{" "}
 							Home
-						</Link>
-						<Link className="nav-link" to="/about">
+						</button>
+						<button
+							className="nav-link"
+							onClick={() => {
+								props.setComponent("about");
+							}}
+						>
+							{" "}
 							About
-						</Link>
+						</button>
 					</div>
 				</div>
 				<div className="form-check form-switch">

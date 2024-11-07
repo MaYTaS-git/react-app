@@ -3,7 +3,7 @@ import React from "react";
 export default function About() {
 	return (
 		<>
-			<div className="container mb-4">
+			<div className="container my-4">
 				<h2>About Section</h2>
 				<p>
 					Here you will find all the information regarding WebDev, we

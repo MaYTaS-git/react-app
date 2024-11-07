@@ -1,15 +1,14 @@
-// import "./App.css";
-import Home from "./Components/Home";
+import "./App.css";
 import Navbar from "./Components/Navbar";
-import About from "./Components/About";
 import Alert from "./Components/Alert";
 import { useState, useRef, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Footer from "./Components/Footer";
+import TheBase from "./Components/theBase";
 
 function App() {
 	const [alert, setAlert] = useState(null);
 	const timeoutRef = useRef(null);
+	const [component, setComponent] = useState("home");
 
 	const showAlert = (type, message, duration = 2000) => {
 		setAlert({
@@ -33,19 +32,12 @@ function App() {
 	}, []);
 
 	return (
-		<Router>
-			<Navbar />
+		<>
+			<Navbar setComponent={setComponent} />
 			<Alert alert={alert} />
-			<Routes>
-				<Route
-					element={<Home showAlert={showAlert} />}
-					exact
-					path={"/"}
-				/>
-				<Route exact path={"/about"} element={<About />} />
-			</Routes>
+			<TheBase comp={component || "home"} showAlert={showAlert} />
 			<Footer />
-		</Router>
+		</>
 	);
 }
 
