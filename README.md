@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Check the project Working here
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Text maniputaion demo site [Click here](https://maytas-git.github.io/react-app/).
 
 ## Available Scripts
 
